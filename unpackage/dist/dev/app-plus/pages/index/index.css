@@ -1,0 +1,23 @@
+
+.container {
+  padding: 20px;
+}
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+uni-button {
+  margin-top: 20px;
+  background-color: #007aff;
+  color: white;
+}
+
+
+.container {
+  padding: 0.9375rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
