@@ -1,5 +1,6 @@
 <template>
 	<view class="content">
+		
 		<view v-if="activeTab === 0">
 			照片检测内容
 			<cameriaVue></cameriaVue>
@@ -46,7 +47,21 @@ const tabItems = ref([
   { text: '检测记录', icon: 'play-right' },
   { text: '版本信息', icon: 'account' }
 ])
-
+ // <up-button type="primary" text="add" @click="testadd"></up-button>
+// function testadd()
+// {
+// 	const testModule = uni.requireNativePlugin('hjm-testmodule');
+// 	testModule.add(
+// 	{
+// 		a:1,
+// 		b:1
+// 	},e => {
+// 		uni.showToast({
+// 			title:JSON.stringify(e),
+// 			icon:"none"
+// 		})
+// 	})
+// }
 // 方法
 const handleTabChange = (index) => {
   activeTab.value = index
@@ -58,31 +73,66 @@ const handleTabClick = (index) => {
   console.log('Tab clicked:', index)
 }
 
-const openCamera = async () => {
-  try {
-    const res = await uni.chooseImage({ 
-      count: 1, 
-      sourceType: ['camera'] 
-    })
-    imageSrc.value = res.tempFilePaths[0]
-    await uploadImage(res.tempFilePaths[0])
-  } catch (err) {
-    uni.showToast({ 
-      title: '拍照失败', 
-      icon: 'none' 
-    })
-  }
-}
+// const openCamera = async () => {
+//   try {
+//     const res = await uni.chooseImage({ 
+//       count: 1, 
+//       sourceType: ['camera'] 
+//     })
+//     imageSrc.value = res.tempFilePaths[0]
+//     await uploadImage(res.tempFilePaths[0])
+//   } catch (err) {
+//     uni.showToast({ 
+//       title: '拍照失败', 
+//       icon: 'none' 
+//     })
+//   }
+// }
 
-const uploadImage = (filePath) => {
-  return new Promise((resolve, reject) => {
-    uni.uploadFile({
-      url: 'https://example.com/upload',
-      filePath,
-      name: 'file',
-      success: (res) => resolve(res.data),
-      fail: reject
-    })
-  })
-}
+// const uploadImage = (filePath) => {
+// 	console.log("up")
+//   return new Promise((resolve, reject) => {
+//     uni.uploadFile({
+//       url: '192.168.138.1:5000/detect',
+//       filePath,
+//       name: 'file',
+//       formData: {
+//         // 可添加额外参数，如用户ID等
+//         userId: '123'
+//       },
+//       header: {
+//         'Content-Type': 'multipart/form-data'
+//       },
+//       success: (res) => {
+//         try {
+//           // 尝试解析返回的JSON数据（假设后端返回JSON）
+//           const data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+//           console.log('上传成功，服务器返回数据:', data); // 打印完整响应
+          
+//           // 根据你的后端接口结构调整
+//           if (data.status === 'success') {
+//             console.log('检测结果:', data.detections); // 打印检测结果
+//             console.log('原始图片URL:', data.original_image_url);
+//             console.log('处理后的图片URL:', data.processed_image_url);
+//             resolve(data);
+//           } else {
+//             console.error('服务器返回错误:', data.error || '未知错误');
+//             reject(new Error(data.error || 'Upload failed'));
+//           }
+//         } catch (e) {
+//           console.error('解析响应数据失败:', e);
+//           reject(new Error('Invalid server response'));
+//         }
+//       },
+//       fail: (err) => {
+//         console.error('上传失败:', err);
+//         reject(err);
+//       },
+//       complete: (res) => {
+//         console.log('上传完成，完整响应:', res); // 调试用
+//       }
+//     });
+//   });
+// };
+
 </script>

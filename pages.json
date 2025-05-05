@@ -14,7 +14,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "基于深度学习的目标识别与检测系统"
 			}
 		},
 		{
